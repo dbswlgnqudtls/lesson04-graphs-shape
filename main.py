@@ -161,5 +161,35 @@ st.markdown("**이 그래프로 알 수 있는 것:** ")
 st.markdown("---")
 
 # ----------------------------------------------------------------------
+# 그래프 5. 장르별 총 관객 박스플롯 (영화 10편 이상인 장르만)
+# ----------------------------------------------------------------------
+st.header("5. 장르별 총 관객 분포 (10편 이상 장르만)")
+
+genre_movie_counts = df["genre"].value_counts()
+major_genres = genre_movie_counts[genre_movie_counts >= 10].index
+df_major_genres = df[df["genre"].isin(major_genres)]
+
+fig_box = px.box(
+    df_major_genres,
+    x="genre",
+    y="total_audi",
+    hover_name="movieNm",
+)
+fig_box.update_traces(
+    hovertemplate="<b>%{hovertext}</b><br>총 관객: %{y:,}명<extra></extra>",
+)
+fig_box.update_layout(
+    xaxis_title="장르",
+    yaxis_title="총 관객",
+    margin=dict(t=30, b=30, l=10, r=10),
+)
+
+st.plotly_chart(fig_box, use_container_width=True)
+
+st.markdown("**이 그래프로 알 수 있는 것:** ")
+
+st.markdown("---")
+
+# ----------------------------------------------------------------------
 # (다음 그래프를 이어서 추가할 자리)
 # ----------------------------------------------------------------------
