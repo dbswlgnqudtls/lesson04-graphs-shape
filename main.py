@@ -226,5 +226,27 @@ st.markdown("**이 그래프로 알 수 있는 것:** ")
 st.markdown("---")
 
 # ----------------------------------------------------------------------
+# 그래프 7. 국가 → 장르 선버스트 (칸 크기: 영화 편수)
+# ----------------------------------------------------------------------
+st.header("7. 제작 국가와 장르 선버스트")
+
+fig_sunburst = px.sunburst(
+    df,
+    path=["nation", "genre"],
+)
+fig_sunburst.update_traces(
+    hovertemplate="<b>%{label}</b><br>영화 편수: %{value}편<extra></extra>",
+)
+fig_sunburst.update_layout(
+    margin=dict(t=30, b=30, l=10, r=10),
+)
+
+st.plotly_chart(fig_sunburst, use_container_width=True)
+
+st.markdown("**이 그래프로 알 수 있는 것:** ")
+
+st.markdown("---")
+
+# ----------------------------------------------------------------------
 # (다음 그래프를 이어서 추가할 자리)
 # ----------------------------------------------------------------------
