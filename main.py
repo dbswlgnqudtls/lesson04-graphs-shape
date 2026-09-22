@@ -133,5 +133,33 @@ st.markdown(
 st.markdown("---")
 
 # ----------------------------------------------------------------------
+# 그래프 4. 개봉일 스크린수 vs 총 관객 - 산점도 (장르별 색상)
+# ----------------------------------------------------------------------
+st.header("4. 개봉일 스크린수와 총 관객의 관계")
+
+fig_scatter = px.scatter(
+    df,
+    x="first_scrn",
+    y="total_audi",
+    color="genre",
+    hover_name="movieNm",
+)
+fig_scatter.update_traces(
+    hovertemplate="<b>%{hovertext}</b><br>개봉일 스크린수: %{x:,}<br>총 관객: %{y:,}명<extra></extra>",
+)
+fig_scatter.update_layout(
+    xaxis_title="개봉일 스크린수",
+    yaxis_title="총 관객",
+    legend_title_text="장르",
+    margin=dict(t=30, b=30, l=10, r=10),
+)
+
+st.plotly_chart(fig_scatter, use_container_width=True)
+
+st.markdown("**이 그래프로 알 수 있는 것:** ")
+
+st.markdown("---")
+
+# ----------------------------------------------------------------------
 # (다음 그래프를 이어서 추가할 자리)
 # ----------------------------------------------------------------------
