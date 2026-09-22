@@ -191,5 +191,40 @@ st.markdown("**이 그래프로 알 수 있는 것:** ")
 st.markdown("---")
 
 # ----------------------------------------------------------------------
+# 그래프 6. 개봉일 스크린수 vs 총 관객 - 버블 그래프 (크기: 첫 주 관객)
+# ----------------------------------------------------------------------
+st.header("6. 개봉일 스크린수와 총 관객의 관계 (버블 크기: 첫 주 관객)")
+
+fig_bubble = px.scatter(
+    df,
+    x="first_scrn",
+    y="total_audi",
+    color="genre",
+    size="first_week_audi",
+    size_max=40,
+    hover_name="movieNm",
+)
+fig_bubble.update_traces(
+    hovertemplate=(
+        "<b>%{hovertext}</b><br>"
+        "개봉일 스크린수: %{x:,}<br>"
+        "총 관객: %{y:,}명<br>"
+        "첫 주 관객: %{marker.size:,}명<extra></extra>"
+    ),
+)
+fig_bubble.update_layout(
+    xaxis_title="개봉일 스크린수",
+    yaxis_title="총 관객",
+    legend_title_text="장르",
+    margin=dict(t=30, b=30, l=10, r=10),
+)
+
+st.plotly_chart(fig_bubble, use_container_width=True)
+
+st.markdown("**이 그래프로 알 수 있는 것:** ")
+
+st.markdown("---")
+
+# ----------------------------------------------------------------------
 # (다음 그래프를 이어서 추가할 자리)
 # ----------------------------------------------------------------------
